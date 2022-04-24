@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind utilities;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+* {
+	font-family: 'League Spartan', sans-serif;
+}
+
+@layer utilities {
+	.button {
+		@apply px-2 border-2 border-gray-700 hover:bg-slate-100 transition-colors text-lg;
+	}
+}
