@@ -5,7 +5,8 @@ import {
 	emptyCellsAtom,
 	focusedCellAtom,
 	solutionAtom,
-	statsAtom
+	statsAtom,
+	wonAtom
 } from '../atoms'
 import generateBoard from '../lib/generate'
 
@@ -16,6 +17,7 @@ export default function RestartButton() {
 	const resetChrono = useResetRecoilState(chronoAtom)
 	const setBoard = useSetRecoilState(boardAtom)
 	const setSolution = useSetRecoilState(solutionAtom)
+	const setWon = useSetRecoilState(wonAtom)
 
 	function restart() {
 		setStats(prev => ({
@@ -29,6 +31,7 @@ export default function RestartButton() {
 
 		setBoard(board)
 		setSolution(newSolution)
+		setWon(false)
 	}
 
 	return (

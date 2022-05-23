@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import Div100vh from 'react-div-100vh'
+import Confetti from 'react-confetti'
 
-import { boardAtom, emptyCellsAtom, solutionAtom, statsAtom } from './atoms'
+import { boardAtom, emptyCellsAtom, solutionAtom, statsAtom, wonAtom } from './atoms'
 
 import generateBoard from './lib/generate'
 
@@ -19,6 +20,7 @@ import map2d from './util/map2d'
 export default function App() {
 	const [board, setBoard] = useRecoilState(boardAtom)
 	const [solution, setSolution] = useRecoilState(solutionAtom)
+	const [won, setWon] = useRecoilState(wonAtom)
 	const stats = useRecoilValue(statsAtom)
 	const emptyCells = useRecoilValue(emptyCellsAtom)
 
@@ -36,7 +38,7 @@ export default function App() {
 			if (emptyCells[`${x}${y}`] !== num) return
 		}
 		if (solution.length) {
-			alert('Congrats, you won!')
+			setWon(true)
 		}
 	}, [solution, emptyCells])
 
@@ -73,6 +75,20 @@ export default function App() {
 					<RestartButton />
 				</div>
 			</div>
+
+			{won && (
+				<>
+					<Confetti />
+					<div className="absolute top-0 left-0 grid w-screen h-screen bg-black place-items-center bg-opacity-40">
+						<div className="flex flex-col justify-around w-1/2 max-w-md bg-white h-1/2 rounded-xl shdow-md place-items-center drop-shadow-xl">
+							<div className="text-4xl font-semibold text-center text-green-500">
+								Congrats You Won!
+							</div>
+							<RestartButton />
+						</div>
+					</div>
+				</>
+			)}
 		</Div100vh>
 	)
 }

@@ -8,6 +8,7 @@ import createEmptyBoard from './util/createEmptyBoard'
 // EmptyCells
 // Chrono
 // Solution
+// won
 
 interface Stats {
 	difficulty: Difficulty
@@ -45,4 +46,9 @@ export const chronoAtom = atom<Chrono>({
 export const solutionAtom = atom<Solution>({
 	key: 'solutionAtom',
 	default: []
+})
+
+export const wonAtom = atom({
+	key: 'wonAtom',
+	default: false
 })
